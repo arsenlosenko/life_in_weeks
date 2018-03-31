@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>My life calendar</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/animate.min.css') }}">
 </head>
 <body>
     <h3>Calendar</h3>
     <p>Your age is {{ age }}</p>
-    <table>
+    <table align="center">
     {% for row in range(90) %}
-    <tr class="year{{ row + 1 }}">
+    <tr class="year{{ row + 1 }} animated fadeInUp">
         {% for cell in range(52) %}
         <td class="week{{cell + 1}}">
             <span class="glyphicon {% if (row + 1) - age != 1 %} 
@@ -32,6 +33,7 @@
     </tr>
     {% endfor %}
     </table>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
 </html>
