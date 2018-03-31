@@ -3,12 +3,12 @@ create table users (
     id integer primary key autoincrement,
     email text not null,
     age integer not null
-)
+);
 
 create table resolutions (
-    id integer primary key autorincrement,
+    id integer primary key autoincrement,
     userid integer,
     weeknum integer,
     text text,
     foreign key (userid) references users(id)
-)
+);
