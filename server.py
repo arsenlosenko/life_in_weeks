@@ -1,16 +1,19 @@
+import datetime
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     # ask for initial info (age), tell story about life calendar
     return render_template('index.html')
 
-@app.route("/calendar")
+@app.route("/calendar", methods=['GET', 'POST'])
 def calendar():
     # show calendar with highlighted weeks according to age (pass age from index)
-    return render_template('calendar.html')
+    age = int(request.form.get('age'))
+    week_num = datetime.datetime.now().isocalendar()[1]
+    return render_template('calendar.html', age=age, week_num=week_num)
 
 
 if __name__ == "__main__":
