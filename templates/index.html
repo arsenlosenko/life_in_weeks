@@ -5,13 +5,23 @@
     <title>My life calendar</title>
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/index.css') }}">
 </head>
 <body>
-    <form action="/calendar" method="post">
-        <input type="text" name="age" placeholder="what's your age?">
-        <input type="submit" value="Here is my age">
-    </form>
+    <div class="center">
+      <div id="register">
+	<div id="inputContainer">
+        <form action="/calendar" method="post">
+	  <input id="inputField" name="age" required autofocus />
+	  <label id="inputLabel"></label>
+          <button type="submit" class="btn btn-mini"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button>
+        </form>
+	  <div id="inputProgress"></div>
+	</div>
+      </div>
+    </div>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
