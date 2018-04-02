@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My life calendar</title>
+    <title>My Life Calendar</title>
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/animate.min.css') }}">
 </head>
 <body>
-    <h3>Calendar</h3>
-    <p>Your age is {{ age }}</p>
+    <div class='text-center'>
+        <h3>Calendar</h3>
+        <p>Your age is {{ age }}</p>
+    </div>
     <table align="center">
     {% for row in range(90) %}
     <tr class="year{{ row + 1 }} animated fadeInUp">
@@ -27,12 +29,13 @@
                                             glyphicon-unchecked text-info 
                                        {% endif %}
                                    {% endif %}
-                                   " aria-hidden="true"></span> 
+                                   " aria-hidden="true" style="font-size: 20px;"></span> 
         </td>
         {% endfor %}
     </tr>
     {% endfor %}
     </table>
+    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
