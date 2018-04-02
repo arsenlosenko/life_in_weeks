@@ -5,10 +5,12 @@ create table users (
     age integer not null
 );
 
-create table resolutions (
+create table tasks (
     id integer primary key autoincrement,
     userid integer,
     weeknum integer,
+    yearnum integer,
+    name text,
     text text,
     foreign key (userid) references users(id)
 );
