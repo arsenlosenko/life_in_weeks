@@ -15,6 +15,11 @@ def calendar():
     week_num = datetime.datetime.now().isocalendar()[1]
     return render_template('calendar.html', age=age, week_num=week_num)
 
+@app.route("/sendTaskData", methods=["POST"])
+def save_task():
+    task_data = request.form.get('body')
+    print(task_data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
