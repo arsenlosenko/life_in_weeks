@@ -1,11 +1,11 @@
 drop table if exists my_life_calendar;
-create table users (
+create table user (
     id integer primary key autoincrement,
     email text not null,
     age integer not null
 );
 
-create table tasks (
+create table task (
     id integer primary key autoincrement,
     userid integer,
     weeknum integer,

@@ -3,10 +3,8 @@ document.querySelectorAll('[class^="week"] > span').forEach((item) => {
 });
 
 function addTasks(e){
-    let yearNumClass = e.target.parentNode.parentNode.classList[0]; 
-    let weekNumClass = e.target.parentNode.classList[0];
-    let weekNum = weekNumClass.replace('week', '');
-    let yearNum = yearNumClass.replace('year', '');
+    let yearNum = e.target.parentNode.parentNode.classList[0].replace('year', ''); 
+    let weekNum = e.target.parentNode.classList[0].replace('week', '');
     let taskName = prompt('Enter task name');
     let taskDescription = prompt('Enter task description');
     let taskData = {
@@ -22,7 +20,7 @@ function addTasks(e){
 function sendData(data){
     let url = '/sendTaskData';
     sendPost(url, data).done((resp) => {
-        console.log(resp);
+        console.log('test');
     });
 }
 
