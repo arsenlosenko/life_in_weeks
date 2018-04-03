@@ -28,6 +28,9 @@ def save_task():
     task_text = request.form.get('text')
     week_num = request.form.get('weekNum')
     year_num = request.form.get('yearNum')
+    task = Task(user_id=1, name=task_name, text=task_text, week_num=week_num, year_num=year_num) 
+    db.session.add(task)
+    db.session.commit()
     return json.dumps({'status':'ok'})
 
 

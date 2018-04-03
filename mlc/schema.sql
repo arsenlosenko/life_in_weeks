@@ -7,10 +7,10 @@ create table user (
 
 create table task (
     id integer primary key autoincrement,
-    userid integer,
-    weeknum integer,
-    yearnum integer,
+    user_id integer,
+    week_num integer,
+    year_num integer,
     name text,
     text text,
-    foreign key (userid) references users(id)
+    foreign key (user_id) references users(id)
 );
