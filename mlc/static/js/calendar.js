@@ -1,3 +1,37 @@
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('currentWeekTasks').style.display = "none";
+    document.getElementById('completedTasks').style.display = "none";
+    document.getElementById('goToCompleted').addEventListener('click', (e) => {
+        let completedTasks = document.getElementById('completedTasks');
+        let lifeCalendar = document.getElementById('lifeCalendar');
+        if (e.target.dataset.pressed == 'false'){
+            lifeCalendar.style.display = "none";
+            completedTasks.style.display = "block";
+            e.target.dataset.pressed = true;
+        }else{
+            completedTasks.style.display = "none";
+            lifeCalendar.style.display = "block";
+            e.target.dataset.pressed = false;
+        }
+    });
+
+    document.getElementById('goToCurrent').addEventListener('click', (e) => {
+        let goToCompletedBtn = document.getElementById('goToCompleted');
+        let completedTasks = document.getElementById('completedTasks');
+        let lifeCalendar = document.getElementById('lifeCalendar');
+        let currentTasks = document.getElementById('currentWeekTasks');
+        if (goToCompletedBtn.dataset.pressed == 'true'){
+            completedTasks.style.display = 'none';
+            lifeCalendar.style.display = 'block';
+            goToCompletedBtn.dataset.pressed = false;
+        } else{
+            lifeCalendar.style.display = 'none';
+            currentTasks.style.display = 'block';
+        }
+    });
+});
+
+
 document.querySelectorAll('[class^="week"] > span').forEach((item) => {
     item.addEventListener('click', addTasks);
 });

@@ -11,32 +11,56 @@
         <h3>Calendar</h3>
         <p>Your age is {{ age }}</p>
     </div>
-    <table align="center">
-    {% for row in range(90) %}
-    <tr class="year{{ row + 1 }} animated fadeInUp">
-        {% for cell in range(52) %}
-        <td class="week{{cell + 1}}">
-            <span class="glyphicon {% if (row + 1) - age != 1 %} 
-                                       {% if age and age >= row + 1 %} 
-                                            glyphicon-check text-success
-                                       {% else %}
-                                            glyphicon-unchecked text-info 
+    <div id="switchView">
+        <button id="goToCompleted" data-pressed=false><-</button>
+        <button id="goToCurrent" data-pressed=false>-></button>
+
+    </div>
+    <div id="lifeCalendar">
+        <table align="center">
+        {% for row in range(90) %}
+        <tr class="year{{ row + 1 }} animated fadeInUp">
+            {% for cell in range(52) %}
+            <td class="week{{cell + 1}}">
+                <span class="glyphicon {% if (row + 1) - age != 1 %} 
+                                           {% if age and age >= row + 1 %} 
+                                                glyphicon-check text-success
+                                           {% else %}
+                                                glyphicon-unchecked text-info 
+                                           {% endif %}
+                                        {% else %}
+                                           {% if week_num >= cell + 1 %} 
+                                                glyphicon-check text-success
+                                           {% else %}
+                                                glyphicon-unchecked text-info 
+                                           {% endif %}
                                        {% endif %}
-                                    {% else %}
-                                       {% if week_num >= cell + 1 %} 
-                                            glyphicon-check text-success
-                                       {% else %}
-                                            glyphicon-unchecked text-info 
-                                       {% endif %}
-                                   {% endif %}
-                                   " aria-hidden="true" style="font-size: 20px;"></span> 
-        </td>
+                                       " aria-hidden="true" style="font-size: 20px;"></span> 
+            </td>
+            {% endfor %}
+        </tr>
         {% endfor %}
-    </tr>
-    {% endfor %}
     </table>
-    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+    </div>
+
+    <div id="currentWeekTasks">
+        <span>Current Tasks</span>
+        <ol>
+        {% for i in range(20) %}
+            <li> item {{ i }}</li>
+        {% endfor %}
+        </ol>
+    </div>
+    <div id="completedTasks">
+        <span>Completed Tasks</span>
+        <ol>
+        {% for i in range(20) %}
+            <li> item {{ i }}</li>
+        {% endfor %}
+        </ol>
+    </div>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calendar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
 </html>
