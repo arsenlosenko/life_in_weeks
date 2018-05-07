@@ -48,8 +48,10 @@ class LifeCalendar {
 
 
     draw(pos){
+        let roundedX = Math.round(pos.x / 10) * 10; 
+        let roundedY = Math.round(pos.y / 10) * 10; 
         this.ctx.fillStyle = this.lineFill;
-        this.ctx.fillRect(pos.x, pos.y,  20, 20);
+        this.ctx.fillRect(roundedX, roundedY,  20, 20);
     }
 
     getWeekInfo(pos){
