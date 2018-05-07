@@ -30,7 +30,7 @@ class LifeCalendar {
 
     drawOnGrid() {
         this.canvas.addEventListener('mousemove', (e) => {
-            this.draw(e);
+            this.handleMouseMove(e);
         });
     }
 
@@ -47,13 +47,25 @@ class LifeCalendar {
     }
 
 
+    draw(pos){
+        this.ctx.fillStyle = this.lineFill;
+        this.ctx.fillRect(pos.x, pos.y,  20, 20);
+    }
 
-    draw(e){ 
-        if (this.canDraw){ 
-            let pos = this.getMousePos(e);
-            if(this.matchPoints(pos.x, pos.y)){
-                this.ctx.fillStyle = this.lineFill;
-                this.ctx.fillRect(pos.x, pos.y,  20, 20);
+    getWeekInfo(pos){
+        let week = Math.round(pos.x / 10) * 10;
+        let year = Math.round(pos.y / 10) * 10;
+        console.log(week, year);
+    }
+
+
+    handleMouseMove(e){ 
+        let pos = this.getMousePos(e);
+        if(this.matchPoints(pos.x, pos.y)){
+            if(this.canDraw){
+                this.draw(pos);
+            }else{
+                this.getWeekInfo(pos);
             }
         }
     }
@@ -62,6 +74,7 @@ class LifeCalendar {
         let weeksInYear = 52;
         let yearsInLife = 90;
         let pixelsPerSquare = 10;
+
         for(let x = 10; x <= (weeksInYear * pixelsPerSquare); x+= 10){ 
            this.ctx.fillText(x/10, x * 2, 10);
            for(let y = 10; y <= (yearsInLife * pixelsPerSquare); y += 10){
