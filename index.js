@@ -42,17 +42,16 @@ class LifeCalendar {
         }
     }
 
+    matchPoints(posx, posy){
+        return this.gridPoints.find((x) => {return (((x[0] - 10) < posx < (x[0] + 10)) && ((x[1] - 10)< posy <  (x[1]  + 10)))});
+    }
+
+
 
     draw(e){ 
         if (this.canDraw){ 
             let pos = this.getMousePos(e);
-            let point = [pos.x,pos.y];
-            let matchPoints = this.gridPoints.find((x) => { 
-                                                return (
-                                                        (point[0] > (x[0] - 10) && point[0] < (x[0] + 10)) 
-                                                        && (point[1] > (x[1] - 10) && point[1] > (x[1]  + 10)) 
-                                                    )});
-            if(matchPoints){
+            if(this.matchPoints(pos.x, pos.y)){
                 this.ctx.fillStyle = this.lineFill;
                 this.ctx.fillRect(pos.x, pos.y,  20, 20);
             }
@@ -60,9 +59,12 @@ class LifeCalendar {
     }
 
     drawWeekGrid(){
-        for(let x = 10; x <= 520; x+= 10){ 
+        let weeksInYear = 52;
+        let yearsInLife = 90;
+        let pixelsPerSquare = 10;
+        for(let x = 10; x <= (weeksInYear * pixelsPerSquare); x+= 10){ 
            this.ctx.fillText(x/10, x * 2, 10);
-           for(let y = 10; y <= 900; y += 10){
+           for(let y = 10; y <= (yearsInLife * pixelsPerSquare); y += 10){
                   let gridPoint = [x * 2, y * 2];
                   this.ctx.fillText(y/10, 5, y*2);
                   this.ctx.strokeRect(x * 2, y * 2, 10, 10); 
