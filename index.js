@@ -57,7 +57,6 @@ class LifeCalendar {
     getWeekInfo(pos){
         let week = Math.round(pos.x / 10) * 10;
         let year = Math.round(pos.y / 10) * 10;
-        console.log(week, year);
     }
 
 
