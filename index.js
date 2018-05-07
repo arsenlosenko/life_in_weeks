@@ -4,19 +4,34 @@ function setCanvas() {
     var ctx = canvas.getContext('2d');
     var lineFill = '#000000';
     var gridPoints = drawWeekGrid(ctx);
+    var canDraw = false;
+
+    canvas.addEventListener('mousedown', function() {
+        canDraw = true;
+    });
     canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', function () {
+        canDraw = false;
+    });
     colorPicker.addEventListener('change', function(e) {
         lineFill = e.target.value;
     }) 
 
     function draw(e) {
-        var pos = getMousePos(canvas, e);
-        var posx = pos.x;
-        var posy = pos.y;
-        var point = [Math.round(posx / 10) * 10, Math.round(posy / 10) * 10];
-        if(gridPoints.find(function (x) { return (x[0] == point[0] && x[1] == point[1])})){
-            ctx.fillStyle = lineFill; 
-            ctx.fillRect(posx-2, posy-2, 10, 10);
+        if (canDraw){ 
+            var pos = getMousePos(canvas, e);
+            var posx = pos.x;
+            var posy = pos.y;
+            var point = [posx,posy];
+            var matchPoints = gridPoints.find(function (x) { 
+                                                return (
+                                                        (point[0] > x[0] && point[0] < (x[0] + 10)) 
+                                                        && (point[1] > x[1] && point[1] > (x[1]  + 10)) 
+                                                    )});
+            if(matchPoints){
+                ctx.fillStyle = lineFill;
+                ctx.fillRect(posx, posy,  20, 20);
+            }
         }
     }
 
